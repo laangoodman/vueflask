@@ -31,7 +31,7 @@ const OnlineActivation = ref('');
 const OfflineActivation = ref('');
 const PurchaseAmount = ref('');
 const Points = ref('');
-const PointsRequiredForUpgrade = ref('')
+const PointsRequiredForUpgrade = ref(0)
 
 const computedPointsRatio = computed(() => {
     if (PurchaseAmount.value > 0) {
@@ -44,6 +44,7 @@ const computedPointsRatio = computed(() => {
 // Watch for changes in Points and PurchaseAmount
 watch([Points, PurchaseAmount], ([newPoints, newPurchaseAmount]) => {
     // Update computedPointsRatio when either Points or PurchaseAmount changes
+    console.log('555')
     computedPointsRatio.value = (newPoints / newPurchaseAmount).toFixed(2);
 });
 
@@ -194,7 +195,7 @@ const submitData = async () => {
                 </div>
                 <p></p>
 
-                <DataTable :value="fixedData" class="p-datatable-gridlines">
+                <DataTable :rowHover="true" :value="fixedData" class="p-datatable-gridlines">
                     <Column field="LevelName" header="等级名称"></Column>
                     <Column field="PointsRatio" header="积分比例"></Column>
                     <Column field="ProductDiscount" header="商品折扣"></Column>

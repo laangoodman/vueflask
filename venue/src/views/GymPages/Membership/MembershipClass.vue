@@ -102,7 +102,7 @@ const submitData = async () => {
             MembershipFee: MembershipFee.value,
             StartDate: StartDate.value
         };
-        const response = await axios.post(`${API}/api/Membership/Insert_membership_categories', requestData`);
+        const response = await axios.post(`${API}/api/Membership/Insert_membership_categories`, requestData);
         // const response = await axios.post('http://127.0.0.1:5000/api/Membership/Insert_membership_categories', requestData);
 
         // 处理后端响应
