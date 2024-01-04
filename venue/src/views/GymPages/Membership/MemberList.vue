@@ -7,10 +7,52 @@ import { useToast } from 'primevue/usetoast';
 const API = process.env.API_URL
 const toast = useToast();
 
-const MemberPassword = ref('6666');
-const ConfirmPassword = ref('6666');
 
-const selectedCity1 = ref({})
+// const MemberPassword = ref('6666');
+// const ConfirmPassword = ref('6666');
+const MemberID = ref('')
+const CardFaceNumber = ref('');
+const Name = ref('');
+const Gender = ref('');
+const PhoneNumber = ref('');
+const IDNumber = ref('');
+const Birthday = ref('');
+const PlateNumber = ref('');
+const MemberPassword = ref('');
+const CardIssuanceFee = ref('');
+const Address = ref('');
+const CurrentBalance = ref('');
+//注意operator
+const Operator = ref('');
+
+const MemberAvatar = ref('');
+
+const LevelName =ref('')
+
+const onUpload = (event) => {
+    if (event.files && event.files.length > 0) {
+        const file = event.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            // e.target.result contains the ArrayBuffer of the file
+            const arrayBuffer = e.target.result;
+            const uint8Array = new Uint8Array(arrayBuffer);
+
+            // Convert ArrayBuffer to binary string
+            let binaryString = '';
+            for (let i = 0; i < uint8Array.length; i++) {
+                binaryString += String.fromCharCode(uint8Array[i]);
+            }
+
+            MemberAvatar.value = btoa(binaryString); // Convert binary string to Base64
+            
+        };
+
+        reader.readAsArrayBuffer(file);
+    }
+};
+
 
 const openNew = () => {
     
@@ -18,9 +60,7 @@ const openNew = () => {
 
 
 const fixedData = ref([
-        // { huiyuan: 'ddd', kahao: 100 },
-        // { huiyuan: 'eee', kahao: 101 },
-        // { huiyuan: 'fff', kahao: 102 },
+ 
 ]);
 
 // data = {
@@ -46,12 +86,12 @@ const fetchData = async () => {
 
     try {
           const response = await axios.post(`${API}/api/Membership/Get_members`, {
-            value: "",
+            search_query: "",
           });
           // Handling server response
           console.log('Server Response:', response.data);
           // Updating timeSlots based on the server response
-          fixedData.value = response.data.value
+          fixedData.value = response.data
           console.log("@@@@",fixedData.value)
         } catch (error) {
           // Handling errors
@@ -100,7 +140,71 @@ const close = () => {
     display.value = false;
 };
 
+//submit data button
+const submitData = async () => {
+    try {
+        const requestData = {
+            // <!-- //     "MemberAvatar": b'\x00\x01\x02\x03',  # 二进制头像数据 -->
+            MemberAvatar: MemberAvatar.value,
+            MemberID: MemberID.value,
+            Name: Name.value,
+            CardFaceNumber:CardFaceNumber.value,
+            Gender: Gender.value,
+            PhoneNumber: PhoneNumber.value,
+            IDNumber: IDNumber.value,
+            Birthday: Birthday.value,
+            PlateNumber: PlateNumber.value,
+            Password: MemberPassword.value,
+            CardIssuanceFee: CardIssuanceFee.value,
+            Address: Address.value,
+            CurrentBalance: CurrentBalance.value,
+            // Operator:Operator.value     暂时先写死成admin, 速改
+            Operator:"Admin",
+        };
+        const response = await axios.post(`${API}/api/Membership/Insert_members`, requestData);
+        // const response = await axios.post('http://127.0.0.1:5000/api/Membership/Insert_membership_categories', requestData);
 
+        // 处理后端响应
+        console.log('发送成功', requestData);
+
+        //发送成功以后保存
+        display.value = false;
+        toast.add({ severity: 'success', summary: '保存成功', detail: Name.value, life: 5000 });
+
+        //刷新数据
+        fetchData();
+    } catch (error) {
+        // 处理错误
+        console.error('发送请求时出错:', error);
+        toast.add({ severity: 'error', summary: '保存失败', detail: '', life: 5000 });
+    }
+    try {
+        const requestData_link = {
+            LevelName: LevelName.value,
+            MemberID: MemberID.value,
+        };
+        const response_link = await axios.post(`${API}/api/Membership/Insert_Members_Link`,requestData_link);
+        console.log('发送成功', requestData_link);
+        } catch (error) {
+            console.error('LevelName添加出错:', error);
+
+        }
+};
+
+// <!-- //     "MemberID": "M12345", 会员卡号
+// //     "CardFaceNumber": "CF123", 卡面卡号
+// //     "Name": "张三", 会员姓名
+// //     "Gender": "男", 会员性别
+// //     "PhoneNumber": "1234567890", 手机号码
+// //     "IDNumber": "123456789012345", 身份证号
+// //     "Birthday": "1990-01-15", 会员生日
+// //     "PlateNumber": "C78901",  车牌号
+// //     "Password": "my_password",密码
+// //     "CardIssuanceFee": 50.00, 售卡工本费
+// //     "Address": "北京市朝阳区", 联系地址
+// //     "CurrentBalance": 1000.00, 账户余额
+// //     "Operator": "Admin"
+//        "LevelName":  -->
 
 
 </script>
@@ -218,31 +322,34 @@ const close = () => {
                                     </div>
                                     <div class="field col-12 md:col-6 mt-4">
 
-                                    <FileUpload name="demo[]" @uploader="onUpload" :multiple="true" accept="image/*" :maxFileSize="1000000" customUpload />
-                               
+                                    <FileUpload name="demo[]" @uploader="onUpload" :multiple="false" accept="image/*" :maxFileSize="1000000" customUpload />
+                                                                   <!-- //     "MemberAvatar": b'\x00\x01\x02\x03',  # 二进制头像数据 -->
+
                             </div>
 
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <InputText id="inputtext" type="text" v-model="value1" />
+                                    <InputText id="MemberID" type="text" v-model="MemberID" />
                                     <label for="inputtext">会员卡号</label>
+
+
                                 </span>
                             </div>
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <InputText id="inputtext" type="text" v-model="value1" />
+                                    <InputText id="Name" type="text" v-model="Name" />
                                     <label for="inputtext">会员姓名</label>
                                 </span>
                             </div>
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <InputText id="inputtext" type="text" v-model="value1" />
+                                    <InputText id="PhoneNumber" type="text" v-model="PhoneNumber" />
                                     <label for="inputtext">手机号码</label>
                                 </span>
                             </div>
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <InputText id="inputtext" type="text" v-model="value1" />
+                                    <InputText id="IDNumber" type="text" v-model="IDNumber" />
                                     <label for="inputtext">身份证号</label>
                                 </span>
                             </div>
@@ -251,14 +358,12 @@ const close = () => {
                                         <div class="mb-0 col-12 md:col-6">
                                             <label for="disableddays">会员性别:</label>
                                         </div>
-                                    <!-- <div class="field col-12 md:col-6"> -->
                                         <div class="field-radiobutton mb-0 col-12 md:col-3">
-                                            <RadioButton id="city1" name="city" value="Chicago" v-model="city" />
+                                            <RadioButton id="city1" name="city" value="男" v-model="Gender" />
                                             <label class="ml-4 mt-2" for="city1">男</label> 
                                         </div>
-                                    <!-- <div class="field col-12 md:col-6"> -->
                                         <div class="field-radiobutton mb-0 col-12 md:col-3">
-                                            <RadioButton id="city1" name="city" value="Chicago" v-model="city" />
+                                            <RadioButton id="city1" name="city" value="女" v-model="Gender" />
                                             <label class="ml-4 mt-2" for="city1">女</label> 
                                         </div>
                                 </div>
@@ -273,43 +378,43 @@ const close = () => {
 
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <InputText id="inputtext" type="text" v-model="value1" />
+                                    <InputText id="inputtext" type="text" v-model="CardFaceNumber" />
                                     <label for="inputtext">卡面号码</label>
                                 </span>
                             </div>
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <InputText id="inputtext" type="text" v-model="value1" />
-                                    <label for="inputtext">会员生日</label>
+                                    <input id="birthday" type="date" v-model="Birthday" class="p-inputtext p-component" />
+                                    <!-- <label for="inputtext">会员生日</label> -->
                                 </span>
                             </div>
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <Password v-model="MemberPassword" toggleMask></Password>
-                                    <label for="MemberPassword">会员密码</label>
+                                    <InputText id="inputtext" type="text" v-model="MemberPassword" />
+                                    <label for="">会员密码</label>
                                 </span>
                             </div>
-                            <div class="field col-12 md:col-6 mt-4">
+                            <!-- <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
                                     <Password v-model="ConfirmPassword" toggleMask></Password>
                                     <label for="ConfirmPassword">确认密码</label>
                                 </span>
-                            </div>
+                            </div> -->
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <InputText id="inputtext" type="text" v-model="value1" />
+                                    <InputText id="inputtext" type="text" v-model="LevelName" />
                                     <label for="inputtext">会员等级</label>
                                 </span>
                             </div>
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <InputText id="inputtext" type="text" v-model="value1" />
+                                    <InputText id="inputtext" type="text" v-model="CardIssuanceFee" />
                                     <label for="inputtext">售卡工本费</label>
                                 </span>
                             </div>
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <InputText id="inputtext" type="text" v-model="value1" />
+                                    <InputText id="inputtext" type="text" v-model="CurrentBalance" />
                                     <label for="inputtext">注册充值</label>
                                 </span>
                             </div>
@@ -327,13 +432,13 @@ const close = () => {
 
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <InputText id="inputtext" type="text" v-model="value1" />
+                                    <InputText id="inputtext" type="text" v-model="PlateNumber" />
                                     <label for="inputtext">车牌号码</label>
                                 </span>
                             </div>
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
-                                    <InputText id="inputtext" type="text" v-model="value1" />
+                                    <InputText id="inputtext" type="text" v-model="Address" />
                                     <label for="inputtext">联系地址</label>
                                 </span>
                             </div>
