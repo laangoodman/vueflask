@@ -8,9 +8,14 @@ import { updateTimeSelection } from '@/views/GymPages/Gymjs/store1.js'; // Adjus
 import { ClearDataWhenTabChanged } from '@/views/GymPages/Gymjs/store1.js'; // Adjust the path as needed
 const SportFields = ref([])
 const VenueAreas = ref([])
+const API = process.env.API_URL;
+
+
 const fetchData = async () => {
     try {
-        const response = await axios.get('http://121.40.98.93:7002/api/Venue/Date');
+
+
+        const response = await axios.get(`${API}/api/Venue/Date`);
         const data = response.data; // 从响应中获取数据
         const venueData = data.venue_data; // 获取第一个数据（场馆数据）
         const areasData = data.areas_data; // 获取第二个数据（区域数据）
@@ -58,7 +63,9 @@ const lastSelectedDiscipline = ref(null); // Keep track of the last selected dis
 const timeSlots = ref([]); // Initially an empty array
 // Watching calendarValue for changes
 watch(calendarValue, async (newValue, oldValue) => {
-      const response = await axios.post('http://121.40.98.93:7002/api/Venue/VenueTime', {
+
+      const response = await axios.post(`${API}/api/Venue/VenueTime`, {
+
       date: calendarValue.value.toISOString().split('T')[0] // Format date as YYYY-MM-DD
     });
      console.log('新值：', newValue);
@@ -85,7 +92,7 @@ const toggleCard = async (disciplines) => {
         lastSelectedDiscipline.value = disciplines; // Update the last selected discipline
         if (isCardVisible.value) {
         try {
-          const response = await axios.post('http://121.40.98.93:7002/api/Venue/VenueTime', {
+          const response = await axios.post(`${API}/api/Venue/VenueTime`, {
             data: disciplines,
             date: calendarValue.value.toISOString().split('T')[0] // Format date as YYYY-MM-DD
           });

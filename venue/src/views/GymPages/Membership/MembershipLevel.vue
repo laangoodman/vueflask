@@ -2,6 +2,7 @@
 //123
 import { ref, computed, watch } from 'vue';
 import axios from 'axios';
+const API = process.env.API_URL
 
 import { useToast } from 'primevue/usetoast';
 const toast = useToast();

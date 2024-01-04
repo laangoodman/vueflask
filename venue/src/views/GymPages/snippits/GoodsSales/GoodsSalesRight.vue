@@ -7,6 +7,7 @@ import { store } from '@/views/GymPages/snippits/GoodsSales/GoodsSales.js'; // A
 
 // import { store } from '@/views/GymPages/Gymjs/store2.js'; // store1是场地租用store2商品销售
 
+const API = process.env.API_URL;
 
 
 const categories = ref([

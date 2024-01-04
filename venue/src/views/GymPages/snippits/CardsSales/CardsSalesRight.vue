@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 import { watch } from 'vue';
 import { store } from '@/views/GymPages/snippits/CardsSales/CardsSales.js'; // Adjust the path as needed
+const API = process.env.API_URL;
 
 // import { store } from '@/views/GymPages/Gymjs/store2.js'; // store1是场地租用store2商品销售
 

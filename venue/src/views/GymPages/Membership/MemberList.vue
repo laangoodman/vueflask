@@ -2,6 +2,7 @@
   import HuiYuanLieBiaoTop from '@/views/GymPages/snippits/HuiYuanLieBiaoTop.vue';
   import AASearchMember from '@/views/GymPages/snippits/AASearchMember.vue';
   import HuiYuanList from '@/views/GymPages/snippits/HuiYuanList.vue';
+  const API = process.env.API_URL;
 
 </script>
 

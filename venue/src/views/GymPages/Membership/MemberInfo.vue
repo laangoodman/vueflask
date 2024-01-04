@@ -2,6 +2,7 @@
 
 import { ref } from 'vue';
 import axios from 'axios';
+const API = process.env.API_URL;
 
 </script>
 

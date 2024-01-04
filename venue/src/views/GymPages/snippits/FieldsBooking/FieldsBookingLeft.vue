@@ -9,10 +9,12 @@ const openNew = () => {
     productDialog.value = true;
 };
 
+const API = process.env.API_URL;
 
 const submitData = async () => {
       try {
-        const response = await axios.post('http://121.40.98.93:7002/api/Venue/Insert_Booking', {
+
+        const response = await axios.post(`${API}/api/Venue/Insert_Booking`, {
           bookingInfo: {
             BillNumber: '1234567890',
             MemberID: '1001',

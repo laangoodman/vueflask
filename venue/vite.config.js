@@ -12,9 +12,7 @@ export default defineConfig(() => {
         },
         // Define global constants here
         define: {
-            //API: JSON.stringify('http://121.40.98.93:7002'),
-            API: JSON.stringify('http://172.16.16.128:5000'),
-            
+            'process.env.API_URL': JSON.stringify('http://172.16.16.128:5000')            
         },
     };
 });

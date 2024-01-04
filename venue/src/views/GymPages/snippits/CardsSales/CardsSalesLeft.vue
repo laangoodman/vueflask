@@ -3,6 +3,7 @@
 import BBModal from '@/views/GymPages/snippits/BBModal.vue';
 import { store } from '@/views/GymPages/snippits/CardsSales/CardsSales.js'; // Adjust the path as needed
 import { onBeforeUnmount } from 'vue';
+const API = process.env.API_URL;
 
 const openNew = () => {
     product.value = {};
