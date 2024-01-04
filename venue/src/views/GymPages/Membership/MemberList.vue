@@ -55,12 +55,18 @@ const onUpload = (event) => {
 
 
 const openNew = () => {
-    
+
 };
 
 
 const fixedData = ref([
+<<<<<<< HEAD
  
+=======
+    // { huiyuan: 'ddd', kahao: 100 },
+    // { huiyuan: 'eee', kahao: 101 },
+    // { huiyuan: 'fff', kahao: 102 },
+>>>>>>> 114ff010eddd6f8aba305b2ebc2224dc88b1839c
 ]);
 
 // data = {
@@ -85,6 +91,7 @@ const fixedData = ref([
 const fetchData = async () => {
 
     try {
+<<<<<<< HEAD
           const response = await axios.post(`${API}/api/Membership/Get_members`, {
             search_query: "",
           });
@@ -98,8 +105,24 @@ const fetchData = async () => {
           console.error('Error:', error);
         }
     
+=======
+        const response = await axios.post(`${API}/api/Membership/Get_members`, {
+            search_query: "", // 通过search_query字段传递查询参数
+        });
+        //
+        // Handling server response
+        console.log('Server Response:', response.data);
+        // Updating timeSlots based on the server response
+        fixedData.value = response.data.value
+        console.log("@@@@", fixedData.value)
+    } catch (error) {
+        // Handling errors
+        console.error('Error:', error);
+    }
+
+>>>>>>> 114ff010eddd6f8aba305b2ebc2224dc88b1839c
     // try {
-        
+
     //     // const response = await axios.get('http://:5000/api/Membership/Get_membership_categories');
     //     const response = await axios.get(`${API}/api/Membership/Get_members`);
     //     const data = response.data; // 从响应中获取数据
@@ -113,15 +136,15 @@ const fetchData = async () => {
     //     console.error('出错:', error);
     // }
 };
-fetchData();  
+fetchData();
 
 
-const CommissionMember = ref([       
-        {name: 'New York', code: 'NY'},
-        {name: 'Rome', code: 'RM'},
-        {name: 'London', code: 'LDN'},
-        {name: 'Istanbul', code: 'IST'},
-        {name: 'Paris', code: 'PRS'}        
+const CommissionMember = ref([
+    { name: 'New York', code: 'NY' },
+    { name: 'Rome', code: 'RM' },
+    { name: 'London', code: 'LDN' },
+    { name: 'Istanbul', code: 'IST' },
+    { name: 'Paris', code: 'PRS' }
 ]);
 
 
@@ -211,117 +234,108 @@ const submitData = async () => {
 
 
 <template>
-  <div class="grid ml-2 mt-1">
-    
+    <div class="grid ml-2 mt-1">
 
 
-    <div class="col-3  p-0 lg:pr-5 lg:pb-5 mt-4 lg:mt-0 ">
-        <div
-            style="height: 160px; padding: 2px; border-radius: 10px; background: linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2))">
-            <div class="p-3 surface-card h-full bg-yellow-200" style="border-radius: 8px">
-                <h5 class="mt-2 text-900">今日新增</h5>
-                <h5 class="mb-2 text-900">0</h5>
-                <h5 class="mb-2 text-900">0</h5>
-                <span class="text-600">近7天</span>                                            
-            </div>
-        </div>
-    </div>
-    <div class="col-3  p-0 lg:pr-5 lg:pb-5 mt-4 lg:mt-0 ">
-        <div
-            style="height: 160px; padding: 2px; border-radius: 10px; background: linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2))">
-            <div class="p-3 surface-card h-full bg-yellow-200" style="border-radius: 8px">
-                <h5 class="mt-2 text-900">今日生日</h5>
-                <h5 class="mb-2 text-900">0</h5>
-                <h5 class="mb-2 text-900">0</h5>
-                <span class="text-600">近7天</span>                                            
-            </div>
-        </div>
-    </div>
-    <div class="col-3  p-0 lg:pr-5 lg:pb-5 mt-4 lg:mt-0 ">
-        <div
-            style="height: 160px; padding: 2px; border-radius: 10px; background: linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2))">
-            <div class="p-3 surface-card h-full bg-yellow-200" style="border-radius: 8px">
-                <h5 class="mt-2 text-900">今日未消费</h5>
-                <h5 class="mb-2 text-900">0</h5>
-                <h5 class="mb-2 text-900">0</h5>
-                <span class="text-600">近7天</span>                                            
-            </div>
-        </div>
-    </div>
-    <div class="col-3  p-0 lg:pr-5 lg:pb-5 mt-4 lg:mt-0 ">
-        <div
-            style="height: 160px; padding: 2px; border-radius: 10px; background: linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2))">
-            <div class="p-3 surface-card h-full bg-yellow-200" style="border-radius: 8px">
-                <h5 class="mt-2 text-900">今日到期</h5>
-                <h5 class="mb-2 text-900">0</h5>
-                <h5 class="mb-2 text-900">0</h5>
-                <span class="text-600">近7天</span>                                            
-            </div>
-        </div>
-    </div>
 
-    <div class="formgroup-inline my-4">                
-                    <div class="field">
-                        <InputText type="text" placeholder="请刷卡/输入卡号/手机号" v-tooltip="'Your username'" @click="openNew"/>
-                    </div>                    
-                        <Button class="ml-2 p-button-secondary" type="button" label="查询"  v-tooltip="'Click to proceed'"   />                   
-                        <Button class="ml-2 p-button-primary" type="button" label="新增"  v-tooltip="'Click to proceed'" @click="open"  />  
-                 
-                        <Button class="ml-2 p-button-danger" type="button" label="删除"  v-tooltip="'Click to proceed'"   />                   
-                        <Button class="ml-2 p-button-success" type="button" label="导入"  v-tooltip="'Click to proceed'"   />                   
-                        <Button class="ml-2 p-button-warning" type="button" label="导出"  v-tooltip="'Click to proceed'"   />                   
-
+        <div class="col-3  p-0 lg:pr-5 lg:pb-5 mt-4 lg:mt-0 ">
+            <div
+                style="height: 160px; padding: 2px; border-radius: 10px; background: linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2))">
+                <div class="p-3 surface-card h-full bg-yellow-200" style="border-radius: 8px">
+                    <h5 class="mt-2 text-900">今日新增</h5>
+                    <h5 class="mb-2 text-900">0</h5>
+                    <h5 class="mb-2 text-900">0</h5>
+                    <span class="text-600">近7天</span>
                 </div>
-
             </div>
-                          
-                    <!-- 如果要让responsivelayourscroll work 不能把datatable放在最上面的div里面，会改变里面css -->
-                <DataTable :value="fixedData" rowGroupMode="subheader" groupRowsBy="representative.name" sortMode="single" sortField="representative.name"
-                 :sortOrder="1" scrollable scrollHeight="400px" class="p-datatable-gridlines" responsiveLayout="scroll"
-                 
-                 >
+        </div>
+        <div class="col-3  p-0 lg:pr-5 lg:pb-5 mt-4 lg:mt-0 ">
+            <div
+                style="height: 160px; padding: 2px; border-radius: 10px; background: linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2))">
+                <div class="p-3 surface-card h-full bg-yellow-200" style="border-radius: 8px">
+                    <h5 class="mt-2 text-900">今日生日</h5>
+                    <h5 class="mb-2 text-900">0</h5>
+                    <h5 class="mb-2 text-900">0</h5>
+                    <span class="text-600">近7天</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-3  p-0 lg:pr-5 lg:pb-5 mt-4 lg:mt-0 ">
+            <div
+                style="height: 160px; padding: 2px; border-radius: 10px; background: linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2))">
+                <div class="p-3 surface-card h-full bg-yellow-200" style="border-radius: 8px">
+                    <h5 class="mt-2 text-900">今日未消费</h5>
+                    <h5 class="mb-2 text-900">0</h5>
+                    <h5 class="mb-2 text-900">0</h5>
+                    <span class="text-600">近7天</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-3  p-0 lg:pr-5 lg:pb-5 mt-4 lg:mt-0 ">
+            <div
+                style="height: 160px; padding: 2px; border-radius: 10px; background: linear-gradient(90deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2)), linear-gradient(180deg, rgba(253, 228, 165, 0.2), rgba(187, 199, 205, 0.2))">
+                <div class="p-3 surface-card h-full bg-yellow-200" style="border-radius: 8px">
+                    <h5 class="mt-2 text-900">今日到期</h5>
+                    <h5 class="mb-2 text-900">0</h5>
+                    <h5 class="mb-2 text-900">0</h5>
+                    <span class="text-600">近7天</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="formgroup-inline my-4">
+            <div class="field">
+                <InputText type="text" placeholder="请刷卡/输入卡号/手机号" v-tooltip="'Your username'" @click="openNew" />
+            </div>
+            <Button class="ml-2 p-button-secondary" type="button" label="查询" v-tooltip="'Click to proceed'" />
+            <Button class="ml-2 p-button-primary" type="button" label="新增" v-tooltip="'Click to proceed'" @click="open" />
+
+            <Button class="ml-2 p-button-danger" type="button" label="删除" v-tooltip="'Click to proceed'" />
+            <Button class="ml-2 p-button-success" type="button" label="导入" v-tooltip="'Click to proceed'" />
+            <Button class="ml-2 p-button-warning" type="button" label="导出" v-tooltip="'Click to proceed'" />
+
+        </div>
+
+    </div>
+
+    <!-- 如果要让responsivelayourscroll work 不能把datatable放在最上面的div里面，会改变里面css -->
+    <DataTable :value="fixedData" rowGroupMode="subheader" groupRowsBy="representative.name" sortMode="single"
+        sortField="representative.name" :sortOrder="1" scrollable scrollHeight="400px" class="p-datatable-gridlines"
+        responsiveLayout="scroll">
 
 
-                    <Column selectionMode="multiple" :styles="{'min-width': '3rem'}"></Column>
+        <Column selectionMode="multiple" :styles="{ 'min-width': '3rem' }"></Column>
 
-                    <Column field="representative.name" header="Representative"></Column>
-                    <Column field="MemberAvatar" header="会员头像" style="min-width: 13rem"></Column>
-                    <Column field="MemberID" header="会员卡号" style="min-width: 13rem"></Column>
-                    <Column field="CardFaceNumber" header="卡面号码" style="min-width: 13rem"></Column>
-                    <Column field="Name" header="会员姓名" style="min-width: 13rem"></Column>
-                    <Column field="Gender" header="会员性别" style="min-width: 13rem"></Column>
-                    <Column field="PhoneNumber" header="手机号码" style="min-width: 13rem"></Column>
-                    <Column field="IDNumber" header="身份证号" style="min-width: 13rem"></Column>
-                    <Column field="Birthday" header="会员生日" style="min-width: 13rem"></Column>
-                    <Column field="PlateNumber" header="车牌号" style="min-width: 13rem"></Column>
-                    <Column field="CardIssuanceFee" header="售卡工本费" style="min-width: 13rem"></Column>
-                    <Column field="Address" header="联系地址" style="min-width: 13rem"></Column>
-                    <Column field="CurrentBalance" header="账户余额" style="min-width: 13rem"></Column>
-                    <!-- <Column field="date" header="累计消费" style="min-width: 13rem"></Column> -->
-                    <!-- <Column field="date" header="累计充值" style="min-width: 13rem"></Column> -->
-                    <!-- <Column field="date" header="累计充次" style="min-width: 13rem"></Column> -->
-                    <!-- <Column field="date" header="累计会费" style="min-width: 13rem"></Column> -->
-                    <!-- <Column field="date" header="提成员工" style="min-width: 13rem"></Column> -->
-                    <!-- <Column field="date" header="车辆号码" style="min-width: 13rem"></Column>
+        <Column field="representative.name" header="Representative"></Column>
+        <Column field="MemberAvatar" header="会员头像" style="min-width: 13rem"></Column>
+        <Column field="MemberID" header="会员卡号" style="min-width: 13rem"></Column>
+        <Column field="CardFaceNumber" header="卡面号码" style="min-width: 13rem"></Column>
+        <Column field="Name" header="会员姓名" style="min-width: 13rem"></Column>
+        <Column field="Gender" header="会员性别" style="min-width: 13rem"></Column>
+        <Column field="PhoneNumber" header="手机号码" style="min-width: 13rem"></Column>
+        <Column field="IDNumber" header="身份证号" style="min-width: 13rem"></Column>
+        <Column field="Birthday" header="会员生日" style="min-width: 13rem"></Column>
+        <Column field="PlateNumber" header="车牌号" style="min-width: 13rem"></Column>
+        <Column field="CardIssuanceFee" header="售卡工本费" style="min-width: 13rem"></Column>
+        <Column field="Address" header="联系地址" style="min-width: 13rem"></Column>
+        <Column field="CurrentBalance" header="账户余额" style="min-width: 13rem"></Column>
+        <!-- <Column field="date" header="累计消费" style="min-width: 13rem"></Column> -->
+        <!-- <Column field="date" header="累计充值" style="min-width: 13rem"></Column> -->
+        <!-- <Column field="date" header="累计充次" style="min-width: 13rem"></Column> -->
+        <!-- <Column field="date" header="累计会费" style="min-width: 13rem"></Column> -->
+        <!-- <Column field="date" header="提成员工" style="min-width: 13rem"></Column> -->
+        <!-- <Column field="date" header="车辆号码" style="min-width: 13rem"></Column>
                     <Column field="date" header="联系地址" style="min-width: 13rem"></Column>
                     <Column field="date" header="会员状态" style="min-width: 13rem"></Column> -->
-                    <!-- <Column field="date" header="微信" style="min-width: 13rem"></Column> -->
-                    <!-- <Column field="date" header="开卡时间" style="min-width: 13rem"></Column>
+        <!-- <Column field="date" header="微信" style="min-width: 13rem"></Column> -->
+        <!-- <Column field="date" header="开卡时间" style="min-width: 13rem"></Column>
                     <Column field="date" header="注册门店" style="min-width: 13rem"></Column>
                     <Column field="date" header="到期时间" style="min-width: 13rem"></Column>
                     <Column field="date" header="操作" style="min-width: 13rem"></Column>  -->
-              
-                </DataTable>
 
-                <Dialog header="新增" v-model:visible="display" :breakpoints="{ '960px': '75vw' }"
-                        :style="{ width: '50vw' }" :modal="true">
-                        
-                        <div class=" p-fluid grid formgrid">
-                            <div class="field col-12 md:col-6 mt-4">
-                                    <label for="username">上传头像</label>
-                                    </div>
-                                    <div class="field col-12 md:col-6 mt-4">
+    </DataTable>
 
+<<<<<<< HEAD
                                     <FileUpload name="demo[]" @uploader="onUpload" :multiple="false" accept="image/*" :maxFileSize="1000000" customUpload />
                                                                    <!-- //     "MemberAvatar": b'\x00\x01\x02\x03',  # 二进制头像数据 -->
 
@@ -368,14 +382,72 @@ const submitData = async () => {
                                         </div>
                                 </div>
                             </div>
+=======
+    <Dialog header="新增" v-model:visible="display" :breakpoints="{ '960px': '75vw' }" :style="{ width: '50vw' }"
+        :modal="true">
+
+        <div class=" p-fluid grid formgrid">
+            <div class="field col-12 md:col-6 mt-4">
+                <label for="username">上传头像</label>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+
+                <FileUpload name="demo[]" @uploader="onUpload" :multiple="true" accept="image/*" :maxFileSize="1000000"
+                    customUpload />
+
+            </div>
+
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <InputText id="inputtext" type="text" v-model="value1" />
+                    <label for="inputtext">会员卡号</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <InputText id="inputtext" type="text" v-model="value1" />
+                    <label for="inputtext">会员姓名</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <InputText id="inputtext" type="text" v-model="value1" />
+                    <label for="inputtext">手机号码</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <InputText id="inputtext" type="text" v-model="value1" />
+                    <label for="inputtext">身份证号</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+                <div class=" p-fluid grid formgrid">
+                    <div class="mb-0 col-12 md:col-6">
+                        <label for="disableddays">会员性别:</label>
+                    </div>
+                    <!-- <div class="field col-12 md:col-6"> -->
+                    <div class="field-radiobutton mb-0 col-12 md:col-3">
+                        <RadioButton id="city1" name="city" value="Chicago" v-model="city" />
+                        <label class="ml-4 mt-2" for="city1">男</label>
+                    </div>
+                    <!-- <div class="field col-12 md:col-6"> -->
+                    <div class="field-radiobutton mb-0 col-12 md:col-3">
+                        <RadioButton id="city1" name="city" value="Chicago" v-model="city" />
+                        <label class="ml-4 mt-2" for="city1">女</label>
+                    </div>
+                </div>
+            </div>
+>>>>>>> 114ff010eddd6f8aba305b2ebc2224dc88b1839c
 
 
-                            <!-- <div class="field-radiobutton mb-0">
+            <!-- <div class="field-radiobutton mb-0">
                                                 <RadioButton id="option1" name="TheDayPurChased" value="购买当日"
                                                     v-model="StartDate" />
                                                 <label for="option1">购买当日</label>
                                             </div> -->
 
+<<<<<<< HEAD
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
                                     <InputText id="inputtext" type="text" v-model="CardFaceNumber" />
@@ -419,17 +491,63 @@ const submitData = async () => {
                                 </span>
                             </div>
                             <!-- <div class="field col-12 md:col-6 mt-4">
+=======
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <InputText id="inputtext" type="text" v-model="value1" />
+                    <label for="inputtext">卡面号码</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <InputText id="inputtext" type="text" v-model="value1" />
+                    <label for="inputtext">会员生日</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <Password v-model="MemberPassword" toggleMask></Password>
+                    <label for="MemberPassword">会员密码</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <Password v-model="ConfirmPassword" toggleMask></Password>
+                    <label for="ConfirmPassword">确认密码</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <InputText id="inputtext" type="text" v-model="value1" />
+                    <label for="inputtext">会员等级</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <InputText id="inputtext" type="text" v-model="value1" />
+                    <label for="inputtext">售卡工本费</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <InputText id="inputtext" type="text" v-model="value1" />
+                    <label for="inputtext">注册充值</label>
+                </span>
+            </div>
+            <!-- <div class="field col-12 md:col-6 mt-4">
+>>>>>>> 114ff010eddd6f8aba305b2ebc2224dc88b1839c
                                 <span class="p-float-label">
                                     <InputText id="inputtext" type="text" v-model="value1" />
                                     <label for="inputtext">提成员工</label>
                                 </span>
                             </div> -->
-                            <!-- <div class="field col-12 md:col-6 mt-4">
+            <!-- <div class="field col-12 md:col-6 mt-4">
                                     <Dropdown v-model="selectedCity1" :options="CommissionMember" optionLabel="name" placeholder="选择提成员工" />
 
                             </div> -->
 
 
+<<<<<<< HEAD
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
                                     <InputText id="inputtext" type="text" v-model="PlateNumber" />
@@ -443,31 +561,43 @@ const submitData = async () => {
                                 </span>
                             </div>
                             <!-- <div class="field col-12 md:col-6 mt-4">
+=======
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <InputText id="inputtext" type="text" v-model="value1" />
+                    <label for="inputtext">车牌号码</label>
+                </span>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
+                <span class="p-float-label">
+                    <InputText id="inputtext" type="text" v-model="value1" />
+                    <label for="inputtext">联系地址</label>
+                </span>
+            </div>
+            <!-- <div class="field col-12 md:col-6 mt-4">
+>>>>>>> 114ff010eddd6f8aba305b2ebc2224dc88b1839c
                                 <span class="p-float-label">
                                     <InputText id="inputtext" type="text" v-model="value1" />
                                     <label for="inputtext">推荐人</label>
                                 </span>
                             </div> -->
-                        </div>                   
-                        
+        </div>
 
 
 
 
 
-                    <template #footer>
-                        <Button label="保存" @click="submitData" icon="pi pi-check" class="p-button-outlined" />
-                        <Button label="关闭" @click="close" class="p-button-outlined" />
-                    </template>
-                </Dialog>
 
-                
-  
-
+        <template #footer>
+            <Button label="保存" @click="submitData" icon="pi pi-check" class="p-button-outlined" />
+            <Button label="关闭" @click="close" class="p-button-outlined" />
+        </template>
+    </Dialog>
 </template>
 
 <style scoped>
 .p-datatable-gridlines {
-  font-size: 12px; /* Adjust the size as needed */
+    font-size: 12px;
+    /* Adjust the size as needed */
 }
 </style>
