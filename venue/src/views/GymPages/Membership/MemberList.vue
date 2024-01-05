@@ -60,13 +60,7 @@ const openNew = () => {
 
 
 const fixedData = ref([
-<<<<<<< HEAD
  
-=======
-    // { huiyuan: 'ddd', kahao: 100 },
-    // { huiyuan: 'eee', kahao: 101 },
-    // { huiyuan: 'fff', kahao: 102 },
->>>>>>> 114ff010eddd6f8aba305b2ebc2224dc88b1839c
 ]);
 
 // data = {
@@ -91,7 +85,6 @@ const fixedData = ref([
 const fetchData = async () => {
 
     try {
-<<<<<<< HEAD
           const response = await axios.post(`${API}/api/Membership/Get_members`, {
             search_query: "",
           });
@@ -105,22 +98,6 @@ const fetchData = async () => {
           console.error('Error:', error);
         }
     
-=======
-        const response = await axios.post(`${API}/api/Membership/Get_members`, {
-            search_query: "", // 通过search_query字段传递查询参数
-        });
-        //
-        // Handling server response
-        console.log('Server Response:', response.data);
-        // Updating timeSlots based on the server response
-        fixedData.value = response.data.value
-        console.log("@@@@", fixedData.value)
-    } catch (error) {
-        // Handling errors
-        console.error('Error:', error);
-    }
-
->>>>>>> 114ff010eddd6f8aba305b2ebc2224dc88b1839c
     // try {
 
     //     // const response = await axios.get('http://:5000/api/Membership/Get_membership_categories');
@@ -334,8 +311,14 @@ const submitData = async () => {
                     <Column field="date" header="操作" style="min-width: 13rem"></Column>  -->
 
     </DataTable>
+    <Dialog header="新增" v-model:visible="display" :breakpoints="{ '960px': '75vw' }" :style="{ width: '50vw' }"
+        :modal="true">
 
-<<<<<<< HEAD
+        <div class=" p-fluid grid formgrid">
+            <div class="field col-12 md:col-6 mt-4">
+                <label for="username">上传头像</label>
+            </div>
+            <div class="field col-12 md:col-6 mt-4">
                                     <FileUpload name="demo[]" @uploader="onUpload" :multiple="false" accept="image/*" :maxFileSize="1000000" customUpload />
                                                                    <!-- //     "MemberAvatar": b'\x00\x01\x02\x03',  # 二进制头像数据 -->
 
@@ -382,63 +365,6 @@ const submitData = async () => {
                                         </div>
                                 </div>
                             </div>
-=======
-    <Dialog header="新增" v-model:visible="display" :breakpoints="{ '960px': '75vw' }" :style="{ width: '50vw' }"
-        :modal="true">
-
-        <div class=" p-fluid grid formgrid">
-            <div class="field col-12 md:col-6 mt-4">
-                <label for="username">上传头像</label>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-
-                <FileUpload name="demo[]" @uploader="onUpload" :multiple="true" accept="image/*" :maxFileSize="1000000"
-                    customUpload />
-
-            </div>
-
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <InputText id="inputtext" type="text" v-model="value1" />
-                    <label for="inputtext">会员卡号</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <InputText id="inputtext" type="text" v-model="value1" />
-                    <label for="inputtext">会员姓名</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <InputText id="inputtext" type="text" v-model="value1" />
-                    <label for="inputtext">手机号码</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <InputText id="inputtext" type="text" v-model="value1" />
-                    <label for="inputtext">身份证号</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-                <div class=" p-fluid grid formgrid">
-                    <div class="mb-0 col-12 md:col-6">
-                        <label for="disableddays">会员性别:</label>
-                    </div>
-                    <!-- <div class="field col-12 md:col-6"> -->
-                    <div class="field-radiobutton mb-0 col-12 md:col-3">
-                        <RadioButton id="city1" name="city" value="Chicago" v-model="city" />
-                        <label class="ml-4 mt-2" for="city1">男</label>
-                    </div>
-                    <!-- <div class="field col-12 md:col-6"> -->
-                    <div class="field-radiobutton mb-0 col-12 md:col-3">
-                        <RadioButton id="city1" name="city" value="Chicago" v-model="city" />
-                        <label class="ml-4 mt-2" for="city1">女</label>
-                    </div>
-                </div>
-            </div>
->>>>>>> 114ff010eddd6f8aba305b2ebc2224dc88b1839c
 
 
             <!-- <div class="field-radiobutton mb-0">
@@ -447,7 +373,6 @@ const submitData = async () => {
                                                 <label for="option1">购买当日</label>
                                             </div> -->
 
-<<<<<<< HEAD
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
                                     <InputText id="inputtext" type="text" v-model="CardFaceNumber" />
@@ -491,51 +416,6 @@ const submitData = async () => {
                                 </span>
                             </div>
                             <!-- <div class="field col-12 md:col-6 mt-4">
-=======
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <InputText id="inputtext" type="text" v-model="value1" />
-                    <label for="inputtext">卡面号码</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <InputText id="inputtext" type="text" v-model="value1" />
-                    <label for="inputtext">会员生日</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <Password v-model="MemberPassword" toggleMask></Password>
-                    <label for="MemberPassword">会员密码</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <Password v-model="ConfirmPassword" toggleMask></Password>
-                    <label for="ConfirmPassword">确认密码</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <InputText id="inputtext" type="text" v-model="value1" />
-                    <label for="inputtext">会员等级</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <InputText id="inputtext" type="text" v-model="value1" />
-                    <label for="inputtext">售卡工本费</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <InputText id="inputtext" type="text" v-model="value1" />
-                    <label for="inputtext">注册充值</label>
-                </span>
-            </div>
-            <!-- <div class="field col-12 md:col-6 mt-4">
->>>>>>> 114ff010eddd6f8aba305b2ebc2224dc88b1839c
                                 <span class="p-float-label">
                                     <InputText id="inputtext" type="text" v-model="value1" />
                                     <label for="inputtext">提成员工</label>
@@ -547,7 +427,6 @@ const submitData = async () => {
                             </div> -->
 
 
-<<<<<<< HEAD
                             <div class="field col-12 md:col-6 mt-4">
                                 <span class="p-float-label">
                                     <InputText id="inputtext" type="text" v-model="PlateNumber" />
@@ -561,21 +440,6 @@ const submitData = async () => {
                                 </span>
                             </div>
                             <!-- <div class="field col-12 md:col-6 mt-4">
-=======
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <InputText id="inputtext" type="text" v-model="value1" />
-                    <label for="inputtext">车牌号码</label>
-                </span>
-            </div>
-            <div class="field col-12 md:col-6 mt-4">
-                <span class="p-float-label">
-                    <InputText id="inputtext" type="text" v-model="value1" />
-                    <label for="inputtext">联系地址</label>
-                </span>
-            </div>
-            <!-- <div class="field col-12 md:col-6 mt-4">
->>>>>>> 114ff010eddd6f8aba305b2ebc2224dc88b1839c
                                 <span class="p-float-label">
                                     <InputText id="inputtext" type="text" v-model="value1" />
                                     <label for="inputtext">推荐人</label>
